@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.servlet.http.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -49,7 +50,7 @@ database.pageSize=10
 
             Statement s = conexion.createStatement();
 
-            ResultSet rs = s.executeQuery("select * from misclientes limit " + dbPageSize);
+            ResultSet rs = s.executeQuery("select * from misclientes");
 
             while (rs.next()) {
                 Cliente cc = new Cliente();
@@ -77,5 +78,61 @@ database.pageSize=10
         }
 
         return clien;
+    }
+
+    public static ArrayList<Cliente> getAllClientesFilter(Integer salto, Integer indice) {
+
+        Connection conexion = null;
+
+        ArrayList<Cliente> clien = new ArrayList<Cliente>();
+
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+
+            conexion = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+
+            Statement s = conexion.createStatement();
+
+            ResultSet rs = s.executeQuery("select * from misclientes limit " + indice + ", " + salto);
+
+            while (rs.next()) {
+                Cliente cc = new Cliente();
+                cc.setId(rs.getInt("Id"));
+                cc.setNombre(rs.getString(2));
+                cc.setApellido(rs.getString(3));
+                cc.setNombreCalle(rs.getString(4));
+                cc.setNumero(rs.getInt(5));
+                cc.setCodPostal(rs.getInt(6));
+                cc.setPoblacion(rs.getString(7));
+                cc.setProvincia(rs.getString(8));
+                clien.add(cc);
+            }
+
+        } catch (SQLException | ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conexion != null) {
+                    conexion.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+
+        return clien;
+    }
+
+    public static Cookie getCookie(HttpServletRequest request, String cookieName) {
+        if (request.getCookies() == null) {
+            return null;
+        }
+        for (Cookie cookie : request.getCookies()) {
+            if (cookie.getName().equalsIgnoreCase(cookieName)) {
+                return cookie;
+            }
+        }
+        return null;
     }
 }
