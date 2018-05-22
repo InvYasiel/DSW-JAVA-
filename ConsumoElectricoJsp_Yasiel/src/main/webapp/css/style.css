@@ -1,0 +1,31 @@
+.clientes {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.clientes td, .clientes th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.clientes tr:nth-child(even){background-color: #f2f2f2;}
+
+.clientes tr:hover {background-color: #ddd;}
+
+.clientes th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: red;
+    color: white;
+}/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15-nov-2017, 17:53:36
+    Author     : yasie
+*/
+
