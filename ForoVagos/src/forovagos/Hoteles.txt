@@ -1,0 +1,35 @@
+Puntagorda
+PuntagordaPalace
+5
+160
+
+Tijarafe
+TijarafePalace
+5
+20
+
+Llanos
+LlanosPalace
+5
+95
+
+Paso
+PasoPalace
+5
+48
+
+Garafia
+GarafiaPalace
+5
+52
+
+La Laguna
+LagunaPalace
+5
+54
+
+Santa Cruz
+SantaCruzPalace
+5
+50
+
